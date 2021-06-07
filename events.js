@@ -1,9 +1,14 @@
-const EventEmitter = require('events');
+const Message = require('./message');
+const message = new Message();
 
-const emitter = new EventEmitter();
-
-emitter.on('error', () => {
-    console.log('error is happened');
+// message events
+message.on('message', (msg) => {
+    console.log('Toma Send a message: ' + msg);
 });
+message.sendMessage();
 
-emitter.emit('error');
+// call events
+message.on('call', (msg) => {
+    console.log(msg);
+});
+message.makeCall();
